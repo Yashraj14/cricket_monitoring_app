@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  {%load static%}
+
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link rel="stylesheet" href="{% static '/matches.css'%}" type="text/css">
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+
+    body{
+      background-image:url({%static '/dm.jpg'%});
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;}
+  </style>
+  {% load django_template_maths %}
+</head>
+<body>
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+    <header>RCL SEASON 3</header>
+
+  <ul>
+    <li><a href="/rcl/index"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="/rcl/points_view"><i class="fas fa-stream"></i>Point Table</a></li>
+    <li><a href="/rcl/Fixture_view"><i class="far fa-calendar-alt"></i>Fixtures</a></li>
+    <li><a href="/rcl/Teams_view"><i class="fas fa-user-friends"></i>Teams</a></li>
+    <li><a href="/rcl/Abouts_view"><i class="far fa-question-circle"></i>About</a></li>
+    <!--<li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>-->
+    <li><a href="/rcl/admin/"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+  </ul>
+  </div>
+  <section></section>
+<br>
+<div class="container">
+  <br>
+    <div class="row">
+    <table class="table table-hover bg-dark text-white">
+    <thead class="bg-dark text-white">
+        <tr>
+            <th>Match No</th>
+            <th>Team 1</th>
+            <th>Team 2</th>
+            <th class="text-center">Result</th>
+        </tr>
+    </thead>
+  </tbody>
+    {% for match in score_set%}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td style="color:#00FF00"><b>{{match.team_name_1}}</b></td>
+                <td style="color:#00FFFF"><b>{{match.team_name_2}}</b></td>
+                {% if match.runs_team_1 <  match.runs_team_2 %}
+                  <td style="color:#00FFFF"><b>{{match.team_name_2}}&nbsp;Won By&nbsp;{{10|sub:match.wickets_team_2}}&nbsp;Wickets</b></td>
+                {% else %}
+                  <td style="color:#00FF00"><b>{{match.team_name_1}}&nbsp;Won By&nbsp;{{match.runs_team_1|sub:match.runs_team_2}}&nbsp;Runs</b></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {%load static%}
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="{% static '/points.css'%}" type="text/css">
+  </head>
+  <style>
+  body{background-image:url({%static '/sydney.jpg'%});
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  height: 100vh;
+  transition: all .5s;
+}
+  </style>
+  <body>
+      <input type="checkbox" id="check">
+      <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+      </label>
+      <div class="sidebar">
+      <header>RCL SEASON 3</header>
+
+    <ul>
+    <li><a href="/rcl/index"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="/rcl/matches"><i class="fas fa-link"></i>Matches</a></li>
+    <li><a href="/rcl/Teams_view"><i class="fas fa-user-friends"></i>Teams</a></li>
+    <li><a href="/rcl/Fixture_view"><i class="far fa-calendar-alt"></i>Fixtures</a></li>
+
+  <!--  <li><a href="/rcl/points_view"><i class="fas fa-stream"></i>Point Table</a></li>-->
+    <li><a href="/rcl/Abouts_view"><i class="far fa-question-circle"></i>About</a></li>
+    <!--<li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>-->
+    <li><a href="/rcl/admin/"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+    </ul>
+    </div>
+    <section></section>
+    <div class="container"><br>
+      <table class="table table-sm table-hover table-borderless">
+        <thead class='bg-dark text-white'>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Pos.</th>
+                <th scope="col">Team Name</th>
+                <th scope="col">Played</th>
+                <th scope="col">Won</th>
+                <th scope="col">Lost</th>
+                <th scope="col">Tie</th>
+                <th scope="col">Points</th>
+                <th scope="col">Run Rate</th>
+            </tr>
+        </thead>
+        <tbody class="bg-dark text-light">
+        {% for table in team_info%}
+                <tr>
+                  {%if table.team_img != None %}
+                    <td><img src="{{table.team_img.url}}" height="35px"></td>
+                  {%endif%}
+                    <td><b><p>{{ forloop.counter }}</p></b></td>
+                    <td ><b>{{table.team_name}}</b></td>
+                    <td ><p>{{table.played}}</p></td>
+                    <td ><p>{{table.won}}</p></td>
+                    <td ><p>{{table.lost}}</p></td>
+                    <td ><p>{{table.tie}}</p></td>
+                    <td ><p>{{table.points}}</p></td>
+                    <td ><p>{{table.net_runrate|floatformat:2}}</p></td>
+                </tr>
+        {% endfor %}
+        <tbody>
+        </table>
+  </div>
+  </body>
+</html>

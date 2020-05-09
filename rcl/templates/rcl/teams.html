@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {%load static%}
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="{% static '/teams.css'%}" type="text/css">
+  </head>
+  <style media="screen">
+    body{background-image:url({%static '/Gabba.jpg'%});
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+    height: 100vh;
+    transition: all .5s;
+  }
+  </style>
+
+  <body>
+      <input type="checkbox" id="check">
+      <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+      </label>
+      <div class="sidebar">
+      <header>RCL SEASON 3</header>
+
+    <ul>
+    <li><a href="/rcl/index"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+    <li><a href="/rcl/matches"><i class="fas fa-link"></i>Matches</a></li>
+    <li><a href="/rcl/points_view"><i class="fas fa-stream"></i>Point Table</a></li>
+    <li><a href="/rcl/Fixture_view"><i class="far fa-calendar-alt"></i>Fixtures</a></li>
+
+    <li><a href="/rcl/Abouts_view"><i class="far fa-question-circle"></i>About</a></li>
+    <!--<li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>-->
+    <li><a href="/rcl/admin/"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+    </ul>
+    </div>
+    <section></section>
+    <div class="container bg-dark">
+      <table class="table table-sm table-hover table-borderless">
+        <thead class='bg-dark text-white'>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Team Name</th>
+                <th scope="col">Player Image</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody class="bg-dark text-light">
+        {% for player in player_info%}
+
+                <tr>
+                  {%if player.user_img != None %}
+                    <td ><img src="{{player.team_flag.url}}" height="35px"></td>
+                  {%endif%}
+                    <td ><b>{{player.teamName}}</b></td>
+
+                    {%if player.user_img != None %}
+                      <td><img src="{{player.user_img.url}}" height="80px"></td>
+                    {%endif%}
+                    <td ><p>{{player.user_desc}}</p></td>
+                </tr>
+        {% endfor %}
+        <tbody>
+        </table>
+  </div>
+  </body>
+</html>

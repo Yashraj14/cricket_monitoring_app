@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <title>RCL</title>
+
+  <!--  <link rel="stylesheet" href="home.css">-->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+   {%load static%}
+    <link rel="stylesheet" href="{% static '/index.css'%}" type="text/css">
+
+  </head>
+  <body>
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+    <header>RCL SEASON 3</header>
+
+  <ul>
+<li><a href="/rcl/matches"><i class="fas fa-link"></i>Matches</a></li>
+<li><a href="/rcl/points_view"><i class="fas fa-stream"></i>Point Table</a></li>
+<li><a href="/rcl/Fixture_view"><i class="far fa-calendar-alt"></i>Fixtures</a></li>
+<li><a href="/rcl/Teams_view"><i class="fas fa-user-friends"></i>Teams</a></li>
+<li><a href="/rcl/Abouts_view"><i class="far fa-question-circle"></i>About</a></li>
+<!--<li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>-->
+<li><a href="/rcl/admin/"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+</ul>
+</div>
+<section></section>
+  </body>
+</html>
