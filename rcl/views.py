@@ -54,38 +54,38 @@ def add_team_score(request):
         nrr=(int(team_data.runs_team_1)/float(team_data.overs_team_1))-(int(team_data.runs_team_2)/float(team_data.overs_team_2))
         nrr1=(int(team_data.runs_team_2)/float(team_data.overs_team_2))-(int(team_data.runs_team_1)/float(team_data.overs_team_1))
 
-        
-        team1 = Points.objects.get(team_name=team_data.team_name_1) #null
-        if(team1.played != 0):
-                
-                if(team_data.runs_team_1>team_data.runs_team_2):
-                        Points.objects.filter(team_name=team_data.team_name_1).update(played=team1.played+1,won=team1.won+1,lost=team1.lost,points=team1.points+2,net_runrate=(team1.net_runrate+nrr)/2)
-                else:
-                        Points.objects.filter(team_name=team_data.team_name_1).update(played=team1.played+1,won=team1.won,lost=team1.lost+1,points=team1.points,net_runrate=(team1.net_runrate+nrr)/2)
+        try:
+            team1 = Points.objects.get(team_name=team_data.team_name_1) #null
+            if(team1.played != 0):
 
-        else:
-                if(team_data.runs_team_1>team_data.runs_team_2):
-                    team_points=Points(team_name=team_data.team_name_1,played=1,won=1,lost=0,tie=0,points=2,net_runrate=nrr)
-                    team_points.save()
-                else:
-                    team_points=Points(team_name=team_data.team_name_1,played=1,won=0,lost=1,tie=0,points=0,net_runrate=nrr)
-                    team_points.save()
+                    if(team_data.runs_team_1>team_data.runs_team_2):
+                            Points.objects.filter(team_name=team_data.team_name_1).update(played=team1.played+1,won=team1.won+1,lost=team1.lost,points=team1.points+2,net_runrate=(team1.net_runrate+nrr)/2)
+                    else:
+                            Points.objects.filter(team_name=team_data.team_name_1).update(played=team1.played+1,won=team1.won,lost=team1.lost+1,points=team1.points,net_runrate=(team1.net_runrate+nrr)/2)
+        except:
+            
+                    if(team_data.runs_team_1>team_data.runs_team_2):
+                        team_points=Points(team_name=team_data.team_name_1,played=1,won=1,lost=0,tie=0,points=2,net_runrate=nrr)
+                        team_points.save()
+                    else:
+                        team_points=Points(team_name=team_data.team_name_1,played=1,won=0,lost=1,tie=0,points=0,net_runrate=nrr)
+                        team_points.save()
+        try:
+            team2 = Points.objects.get(team_name=team_data.team_name_2)
+            if(team2.played != 0):
 
-        team2 = Points.objects.get(team_name=team_data.team_name_2)
-        if(team2.played != 0):
-
-                if(team_data.runs_team_1>team_data.runs_team_2):
-                        Points.objects.filter(team_name=team_data.team_name_2).update(played=team2.played+1,won=team2.won,lost=team2.lost+1,points=team2.points,net_runrate=(team2.net_runrate+nrr1)/2)
-                else:
-                        Points.objects.filter(team_name=team_data.team_name_2).update(played=team2.played+1,won=team2.won+1,lost=team2.lost,points=team2.points+2,net_runrate=(team2.net_runrate+nrr1)/2)
-
-        else:
-                if(team_data.runs_team_1>team_data.runs_team_2):
-                    team_points1=Points(team_name=team_data.team_name_2,played=1,won=0,lost=1,tie=0,points=0,net_runrate=nrr1)
-                    team_points1.save()
-                else:
-                    team_points1=Points(team_name=team_data.team_name_2,played=1,won=1,lost=0,tie=0,points=2,net_runrate=nrr1)
-                    team_points1.save()
+                    if(team_data.runs_team_1>team_data.runs_team_2):
+                            Points.objects.filter(team_name=team_data.team_name_2).update(played=team2.played+1,won=team2.won,lost=team2.lost+1,points=team2.points,net_runrate=(team2.net_runrate+nrr1)/2)
+                    else:
+                            Points.objects.filter(team_name=team_data.team_name_2).update(played=team2.played+1,won=team2.won+1,lost=team2.lost,points=team2.points+2,net_runrate=(team2.net_runrate+nrr1)/2)
+        except:
+            
+                    if(team_data.runs_team_1>team_data.runs_team_2):
+                        team_points1=Points(team_name=team_data.team_name_2,played=1,won=0,lost=1,tie=0,points=0,net_runrate=nrr1)
+                        team_points1.save()
+                    else:
+                        team_points1=Points(team_name=team_data.team_name_2,played=1,won=1,lost=0,tie=0,points=2,net_runrate=nrr1)
+                        team_points1.save()
 
 
         messages.success(request,'Scorecard Submitted Successfully !')
