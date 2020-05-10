@@ -4,7 +4,7 @@ from . import views
 
 app_name = 'rcl'
 urlpatterns =[
-    path('index/', views.index, name='index'),
+    path('/index/', views.index, name='index'),
     path('admin/',views.admin,name='admin'),
     path('logoutAdmin/',views.logoutAdmin,name='logoutAdmin'),
     path('results/',views.results,name='results'),
