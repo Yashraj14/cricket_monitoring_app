@@ -62,7 +62,7 @@
   <tbody>
         {% for match in team_info1%}
             <tr>
-                <td>{{ match.id }}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{match.team_1}}</td>
                 <td>{{match.team_2}}</td>
                 <td>{{match.venue}}</td>
