@@ -78,6 +78,10 @@
                     <td ><p>{{table.net_runrate|floatformat:2}}</p></td>
                     {% if table.points == 12%}
                     <td><p class="text-danger"><b>Q</b></p></td>
+                    {%elif table.played == 9%}
+                    {%if forloop.counter == 1 or forloop.counter == 2 or forloop.counter == 3 or forloop.counter == 4%}
+                    <td><p class="text-danger"><b>Q</b></p></td>
+                    {%endif%}
                     {%endif%}
                 </tr>
         {% endfor %}
